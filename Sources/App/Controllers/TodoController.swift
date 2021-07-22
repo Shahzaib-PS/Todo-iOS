@@ -3,9 +3,12 @@ import Vapor
 
 struct TodoController: RouteCollection {
   func boot(routes: RoutesBuilder) throws {
-    let todos = routes.grouped("api","todos")
+    let todos = routes.grouped("api", "notes")
     todos.get(use: index)
     todos.post(use: create)
+    todos.group(":todoID") { todo in
+      todo.patch(use: update)
+    }
     todos.group(":todoID") { todo in
       todo.delete(use: delete)
     }
@@ -18,6 +21,11 @@ struct TodoController: RouteCollection {
   func create(req: Request) throws -> EventLoopFuture<Todo> {
     let todo = try req.content.decode(Todo.self)
     return todo.save(on: req.db).map { todo }
+  }
+
+  func update(req: Request) throws -> EventLoopFuture<Todo> {
+    let todo = try req.content.decode(Todo.self)
+    return todo.update(on: req.db).map { todo }
   }
 
   func delete(req: Request) throws -> EventLoopFuture<HTTPStatus> {

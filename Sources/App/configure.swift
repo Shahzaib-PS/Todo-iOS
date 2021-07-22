@@ -11,6 +11,8 @@ public func configure(_ app: Application) throws {
 
   app.migrations.add(CreateTodo())
 
+  _ = app.autoMigrate()
+
   // register routes
   try routes(app)
 }
