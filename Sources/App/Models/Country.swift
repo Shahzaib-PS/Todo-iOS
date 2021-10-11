@@ -10,10 +10,14 @@ final class Country: Model, Content {
   @Field(key: "countryName")
   var countryName: String
 
+  @Field(key: "countryFlag")
+  var countryFlag: String
+
   init() { }
 
-  internal init(id: UUID? = nil, countryName: String) {
+  internal init(id: UUID? = nil, countryName: String, countryFlag: String) {
     self.id = id
     self.countryName = countryName
+    self.countryFlag = countryFlag
   }
 }

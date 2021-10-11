@@ -13,6 +13,7 @@ struct CreateMovie: Migration {
       .field("country", .array(of: .custom(Country.self)), .required)
       .field("rating", .string, .required)
       .field("episodeNumber", .string, .required)
+      .field("comments", .array(of: .custom(Comment.self)), .required)
       .create()
   }
 

@@ -34,9 +34,12 @@ final class Movie: Model, Content {
   @Field(key: "episodeNumber")
   var episodeNumber: Int
 
+  @Field(key: "comments")
+  var comments: [Comment]
+
   init() { }
 
-  internal init(id: UUID? = nil, title: String, description: String, duration: String, cast: [Cast], genres: [Genres], language: [Language], country: [Country], rating: Int, episodeNumber: Int) {
+  internal init(id: UUID? = nil, title: String, description: String, duration: String, cast: [Cast], genres: [Genres], language: [Language], country: [Country], rating: Int, episodeNumber: Int, comments: [Comment]) {
     self.id = id
     self.title = title
     self.description = description
@@ -47,6 +50,7 @@ final class Movie: Model, Content {
     self.country = country
     self.rating = rating
     self.episodeNumber = episodeNumber
+    self.comments = comments
   }
 }
 
