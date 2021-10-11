@@ -7,9 +7,9 @@ struct CreateMovie: Migration {
       .field("title", .string, .required)
       .field("description", .string, .required)
       .field("cast", .string, .required)
-      .field("genres", .array, .required)
-      .field("language", .array, .required)
-      .field("country", .array, .required)
+      .field("genres", .array(of: .custom(Genres.self)), .required)
+      .field("language", .array(of: .custom(Language.self)), .required)
+      .field("country", .array(of: .custom(Country.self)), .required)
       .create()
   }
 
