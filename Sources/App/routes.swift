@@ -7,5 +7,9 @@ func routes(_ route: Application) throws {
   }
 
   try route.register(collection: TodoController())
-  try route.register(collection: MovieController())
+  if #available(macOS 12.0.0, *) {
+    try route.register(collection: MovieController())
+  } else {
+    // Fallback on earlier versions
+  }
 }
